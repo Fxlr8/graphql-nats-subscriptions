@@ -110,7 +110,6 @@ export class NatsPubSub implements PubSubEngine {
             this.natsConnection.unsubscribe(natsSubId);
             delete this.natsSubMap[triggerName];
             delete this.subsRefsMap[triggerName];
-                natsSubId, triggerName);
         } else {
             const index = refs.indexOf(subId);
             const newRefs = index === -1 ? refs : [...refs.slice(0, index), ...refs.slice(index + 1)];
