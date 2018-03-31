@@ -9,7 +9,6 @@ import {
 } from 'graphql';
 import { withFilter } from 'graphql-subscriptions';
 import { subscribe } from 'graphql/subscription';
-import { logger } from './logger';
 
 const FIRST_EVENT = 'FIRST_EVENT';
 
@@ -48,7 +47,7 @@ describe('GraphQL-JS asyncIterator', () => {
         testSubscription
     }
     `);
-    const pubsub = new NatsPubSub({ logger });
+    const pubsub = new NatsPubSub();
     const origIterator = pubsub.asyncIterator(FIRST_EVENT);
     const returnSpy = jest.spyOn(origIterator, 'return');
     const schema = buildSchema(origIterator);
@@ -82,4 +81,3 @@ describe('GraphQL-JS asyncIterator', () => {
                 expect(returnSpy.mockImplementationOnce).toBeTruthy();
             }));
 });
-
